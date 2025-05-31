@@ -11,3 +11,13 @@ gradle test
 # Publish recipe to local maven repo
 gradle publishToMavenLocal
 ```
+
+# List of recipt got created
+
+- 3 Programatically create using java files
+- 2 created using yml files
+
+
+
+dir /s /b rewrite.yml
+jar tf build/libs/openrewrite-java-r1-1.0.0.jar | findstr rewrite.yml

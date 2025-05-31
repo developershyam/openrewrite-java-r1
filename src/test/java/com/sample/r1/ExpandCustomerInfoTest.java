@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025 
+ * All rights reserved.
+ */
 package com.sample.r1;
 
 import org.junit.jupiter.api.Test;

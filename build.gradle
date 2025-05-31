@@ -15,6 +15,7 @@ plugins {
     // Only needed when you want to apply the OpenRewriteBestPractices recipe to your recipes through
     // ./gradlew rewriteRun -Drewrite.activeRecipe=org.openrewrite.recipes.OpenRewriteBestPractices
     id("org.openrewrite.rewrite") version "7.1.6"
+    id("org.openrewrite.build.recipe-library") version "1.126.4"
     
 }
 
@@ -77,4 +78,19 @@ tasks.test {
         exceptionFormat "full"
         showStandardStreams = true
     }
+}
+tasks.named("licenseMain").configure {
+    enabled = false
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+tasks.named("processResources").configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
