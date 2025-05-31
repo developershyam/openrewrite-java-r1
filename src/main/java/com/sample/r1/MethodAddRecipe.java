@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
+
+import java.io.File;
+
 import org.jspecify.annotations.NonNull;
 import org.openrewrite.*;
 import org.openrewrite.java.JavaIsoVisitor;
@@ -26,6 +29,7 @@ public class MethodAddRecipe extends Recipe {
     public MethodAddRecipe() {
         fullyQualifiedClassName = "com.sample.FooBar";
         methodName = "hello";
+        System.out.println("MethodAddRecipe location"+new File(".").getAbsolutePath());
     }    
 
     // All recipes must be serializable. This is verified by RewriteTest.rewriteRun() in your tests.
@@ -34,6 +38,7 @@ public class MethodAddRecipe extends Recipe {
                                 @NonNull @JsonProperty("methodName") String methodName) {
         this.fullyQualifiedClassName = fullyQualifiedClassName;
         this.methodName = methodName;
+        System.out.println("MethodAddRecipe location"+new File(".").getAbsolutePath());
     }
 
     @Override
