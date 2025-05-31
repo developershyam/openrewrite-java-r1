@@ -1,6 +1,6 @@
 # Ignore build and Gradle-related files
 build/
-
+.gradle/
 # IDE-specific files
 .idea/
 .eclipse/
