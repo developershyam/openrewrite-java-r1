@@ -1,8 +1,19 @@
-build
+# Ignore build and Gradle-related files
 build/
-.gradle
-.idea
-.eclipse
 .gradle/
-# Gradle files
-.gradle/
+
+# IDE-specific files
+.idea/
+.eclipse/
+
+.vscode/
+# Ignore compiled Java classes 
+*.class
+# Ignore JAR files
+*.jar
+# Ignore log files
+*.log
+# Ignore temporary files
+*.tmp
+# Ignore local configuration files
+*.local
