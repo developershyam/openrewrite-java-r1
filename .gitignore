@@ -1,12 +1,11 @@
 # Ignore build and Gradle-related files
 build/
-.gradle/
 
 # IDE-specific files
 .idea/
 .eclipse/
-
 .vscode/
+node_modules/
 # Ignore compiled Java classes 
 *.class
 # Ignore JAR files
