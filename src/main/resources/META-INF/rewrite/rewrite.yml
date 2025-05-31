@@ -1,0 +1,13 @@
+
+type: specs.openrewrite.org/v1beta/recipe
+name: com.sample.MyTestRecipe11
+displayName: My Test Recipe 11
+description: A declarative recipe for testing purposes.
+recipeList:
+  - com.sample.r1.ExpandCustomerInfo
+  - com.sample.r1.MethodAddRecipe:
+      fullyQualifiedClassName: com.sample.FooBar
+      methodName: hello
+  - com.sample.r1.MethodAddWithPramRecipe:
+      fullyQualifiedClassName: com.sample.FooBar
+      methodName: myTestMethod

@@ -11,3 +11,9 @@ gradle test
 # Publish recipe to local maven repo
 gradle publishToMavenLocal
 ```
+
+# Imperative Recipes
+3 recipe build using Recipe class
+
+# Declaritive Recipes
+1 recipe in yml file
