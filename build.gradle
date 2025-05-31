@@ -66,3 +66,15 @@ signing {
     required { project.hasProperty("signing.keyId") }
     sign publishing.publications
 }
+
+tasks.named("rewriteRecipeAuthorAttributionJava").configure {
+    enabled = false
+}
+
+tasks.test {
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+}
