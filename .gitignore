@@ -3,3 +3,6 @@ build/
 .gradle
 .idea
 .eclipse
+.gradle/
+# Gradle files
+.gradle/

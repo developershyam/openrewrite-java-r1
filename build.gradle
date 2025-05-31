@@ -1,30 +1,32 @@
 plugins {
-    id("org.openrewrite.build.recipe-library-base") version "latest.release"
+    
+    id("org.openrewrite.build.recipe-library-base") version "1.126.4"
 
     // This uses the nexus publishing plugin to publish to the moderne-dev repository
     // Remove it if you prefer to publish by other means, such as the maven-publish plugin
-    id("org.openrewrite.build.publish") version "latest.release"
-    id("nebula.release") version "latest.release"
+    id("org.openrewrite.build.publish") version "1.126.4"
+    id("nebula.release") version "20.1.0"
 
     // Configures artifact repositories used for dependency resolution to include maven central and nexus snapshots.
     // If you are operating in an environment where public repositories are not accessible, we recommend using a
     // virtual repository which mirrors both maven central and nexus snapshots.
-    id("org.openrewrite.build.recipe-repositories") version "latest.release"
+    id("org.openrewrite.build.recipe-repositories") version "1.126.4"
 
     // Only needed when you want to apply the OpenRewriteBestPractices recipe to your recipes through
     // ./gradlew rewriteRun -Drewrite.activeRecipe=org.openrewrite.recipes.OpenRewriteBestPractices
-    id("org.openrewrite.rewrite") version "latest.release"
+    id("org.openrewrite.rewrite") version "7.1.6"
     
 }
 
 // Set as appropriate for your organization
 group = "com.mysample"
 description = "Rewrite recipes."
+version = "1.0.0"
 
 
 dependencies {
     // import Rewrite's bill of materials.
-    implementation(platform("org.openrewrite.recipe:rewrite-recipe-bom:latest.release"))
+    implementation(platform("org.openrewrite.recipe:rewrite-recipe-bom:3.3.0"))
 
     // rewrite-java dependencies only necessary for Java Recipe development
     implementation("org.openrewrite:rewrite-java")
@@ -49,18 +51,18 @@ dependencies {
     implementation("org.openrewrite:rewrite-xml")
 
     // lombok is optional, but recommended for authoring recipes
-    compileOnly("org.projectlombok:lombok:latest.release")
-    annotationProcessor("org.projectlombok:lombok:latest.release")
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
 
     // For authoring tests for any kind of Recipe
     testImplementation("org.openrewrite:rewrite-test")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:latest.release")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:latest.release")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:latest.release")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.12.0")
 }
 
-tasks.whenTaskAdded {task ->
-    if(task.name.contains("signNebulaPublication")) {
-        task.enabled = false
-    }
+
+signing {
+    required { project.hasProperty("signing.keyId") }
+    sign publishing.publications
 }
