@@ -6,11 +6,11 @@ import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.java.Assertions.java;
 
-class MethodAdd2RecipeTest implements RewriteTest {
+class MethodAddWithPramRecipeTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new MethodAdd2Recipe("com.sample.FooBar", "hello"));
+        spec.recipe(new MethodAddWithPramRecipe("com.sample.FooBar", "myMethod"));
     }
 
     @Test
@@ -28,7 +28,7 @@ class MethodAdd2RecipeTest implements RewriteTest {
                     package com.sample;
 
                     class FooBar {
-                        public String hello(String name) {
+                        public String myMethod(String name) {
                             return "Hello from com.sample.FooBar!";
                         }
                     }

@@ -15,7 +15,7 @@ import org.openrewrite.java.tree.J;
 // Also note: All recipes must be serializable. This is verified by RewriteTest.rewriteRun() in your tests.
 @Value
 @EqualsAndHashCode(callSuper = false)
-public class MethodAdd2Recipe extends Recipe {
+public class MethodAddWithPramRecipe extends Recipe {
     
     @NonNull
     String fullyQualifiedClassName;
@@ -23,14 +23,14 @@ public class MethodAdd2Recipe extends Recipe {
     @NonNull
     String methodName;
 
-    public MethodAdd2Recipe() {
+    public MethodAddWithPramRecipe() {
         fullyQualifiedClassName = "com.sample.FooBar";
-        methodName = "hello";
+        methodName = "myMethod";
     }    
 
     // All recipes must be serializable. This is verified by RewriteTest.rewriteRun() in your tests.
     @JsonCreator
-    public MethodAdd2Recipe(@NonNull @JsonProperty("fullyQualifiedClassName") String fullyQualifiedClassName,
+    public MethodAddWithPramRecipe(@NonNull @JsonProperty("fullyQualifiedClassName") String fullyQualifiedClassName,
                                 @NonNull @JsonProperty("methodName") String methodName) {
         this.fullyQualifiedClassName = fullyQualifiedClassName;
         this.methodName = methodName;
