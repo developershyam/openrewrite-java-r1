@@ -11,6 +11,7 @@ import org.jspecify.annotations.NonNull;
 import org.openrewrite.*;
 import org.openrewrite.java.JavaIsoVisitor;
 import org.openrewrite.java.JavaTemplate;
+import org.openrewrite.java.TreeVisitingPrinter;
 import org.openrewrite.java.tree.J;
 
 // Making your recipe immutable helps make them idempotent and eliminates a variety of possible bugs.
@@ -29,7 +30,6 @@ public class MethodAddRecipe extends Recipe {
     public MethodAddRecipe() {
         fullyQualifiedClassName = "com.sample.FooBar";
         methodName = "hello";
-        System.out.println("MethodAddRecipe location"+new File(".").getAbsolutePath());
     }    
 
     // All recipes must be serializable. This is verified by RewriteTest.rewriteRun() in your tests.
@@ -38,7 +38,6 @@ public class MethodAddRecipe extends Recipe {
                                 @NonNull @JsonProperty("methodName") String methodName) {
         this.fullyQualifiedClassName = fullyQualifiedClassName;
         this.methodName = methodName;
-        System.out.println("MethodAddRecipe location"+new File(".").getAbsolutePath());
     }
 
     @Override
@@ -62,9 +61,22 @@ public class MethodAddRecipe extends Recipe {
         private final JavaTemplate methodTemplate =
                 JavaTemplate.builder( "public String "+methodName+"() { return \"Hello from #{}!\"; }")
                         .build();
+        
+        @Override
+        public J.CompilationUnit visitCompilationUnit(J.CompilationUnit compUnit, ExecutionContext executionContext) {
+            // This next line could be omitted in favor of a breakpoint
+            // if you'd prefer to use the debugger instead.
+            if(System.getenv("ENABLE_DEBUG").equals("true")){
+                System.out.println("************** visitCompilationUnit: "+ compUnit.getSourcePath().toFile().getAbsolutePath());
+                System.out.println(TreeVisitingPrinter.printTree(getCursor()));
+            }
+            
+            return super.visitCompilationUnit(compUnit, executionContext);
+        }
+
         @Override
         public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext executionContext) {
-            
+        
             // Don't make changes to classes that don't match the fully qualified name
             if (classDecl.getType() == null || !classDecl.getType().getFullyQualifiedName().equals(fullyQualifiedClassName)) {
                 return classDecl;

@@ -16,4 +16,14 @@ gradle publishToMavenLocal
 3 recipe build using Recipe class
 
 # Declaritive Recipes
-1 recipe in yml file
+1 composite recipe in yml file
+
+# Enable print Tree using debug
+Use System env variable 
+```bash
+# Windows
+set ENABLE_DEBUG=true
+
+#Linux
+export ENABLE_DEBUG=true
+```
