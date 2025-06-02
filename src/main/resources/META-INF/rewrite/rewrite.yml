@@ -1,6 +1,6 @@
 
 type: specs.openrewrite.org/v1beta/recipe
-name: com.sample.MyYAMLRecipe
+name: com.sample.r1.MyYAMLRecipe
 displayName: My YAML Test Recipe
 description: A declarative recipe for testing purposes.
 recipeList:
@@ -15,7 +15,7 @@ recipeList:
 ---
 
 type: specs.openrewrite.org/v1beta/recipe
-name: com.sample.MyYAMLMethodRecipe
+name: com.sample.r1.MyYAMLMethodRecipe
 displayName: My YAML Test Recipe
 description: A declarative recipe for testing purposes.
 recipeList:

@@ -16,7 +16,7 @@ class YAMLRecipeTest implements RewriteTest {
     public void defaults(RecipeSpec spec) {
         try {
             InputStream in = new FileInputStream(new File("src/main/resources/META-INF/rewrite/rewrite.yml"));
-            spec.recipe(in, "com.sample.MyYAMLRecipe");
+            spec.recipe(in, "com.sample.r1.MyYAMLRecipe");
             
         } catch (Exception e) {
             e.printStackTrace();
