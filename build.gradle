@@ -77,4 +77,15 @@ tasks.test {
         exceptionFormat "full"
         showStandardStreams = true
     }
+    // Print a summary of test results after execution
+    afterSuite { desc, result ->
+        if (!desc.parent) { // Only print for the root suite
+            println "==================== TEST SUMMARY ===================="
+            println "Total tests: ${result.testCount}"
+            println "Passed: ${result.successfulTestCount}"
+            println "Failed: ${result.failedTestCount}"
+            println "Skipped: ${result.skippedTestCount}"
+            println "======================================================"
+        }
+    }
 }

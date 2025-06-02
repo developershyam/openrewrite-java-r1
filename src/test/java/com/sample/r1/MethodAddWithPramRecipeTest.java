@@ -10,7 +10,7 @@ class MethodAddWithPramRecipeTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new MethodAddWithPramRecipe("com.sample.FooBar", "myMethod"));
+        spec.recipe(new MethodAddWithPramRecipe("com.sample.User", "myMethod"));
     }
 
     @Test
@@ -21,15 +21,15 @@ class MethodAddWithPramRecipeTest implements RewriteTest {
                 """
                     package com.sample;
 
-                    class FooBar {
+                    class User {
                     }
                 """,
                 """
                     package com.sample;
 
-                    class FooBar {
+                    class User {
                         public String myMethod(String name) {
-                            return "Hello from com.sample.FooBar!";
+                            return "Hello from com.sample.User!";
                         }
                     }
                 """

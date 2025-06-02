@@ -1,13 +1,27 @@
 
 type: specs.openrewrite.org/v1beta/recipe
-name: com.sample.MyTestRecipe11
-displayName: My Test Recipe 11
+name: com.sample.MyYAMLRecipe
+displayName: My YAML Test Recipe
 description: A declarative recipe for testing purposes.
 recipeList:
-  - com.sample.r1.ExpandCustomerInfo
+  - com.sample.r1.CustomerInfoExpandRecipe
   - com.sample.r1.MethodAddRecipe:
-      fullyQualifiedClassName: com.sample.FooBar
+      fullyQualifiedClassName: com.sample.Customer
       methodName: hello
   - com.sample.r1.MethodAddWithPramRecipe:
-      fullyQualifiedClassName: com.sample.FooBar
+      fullyQualifiedClassName: com.sample.Customer
+      methodName: myTestMethod
+
+---
+
+type: specs.openrewrite.org/v1beta/recipe
+name: com.sample.MyYAMLMethodRecipe
+displayName: My YAML Test Recipe
+description: A declarative recipe for testing purposes.
+recipeList:
+  - com.sample.r1.MethodAddRecipe:
+      fullyQualifiedClassName: com.sample.User
+      methodName: hello
+  - com.sample.r1.MethodAddWithPramRecipe:
+      fullyQualifiedClassName: com.sample.User
       methodName: myTestMethod

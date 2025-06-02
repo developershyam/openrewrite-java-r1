@@ -11,7 +11,7 @@ import org.openrewrite.java.tree.J.Modifier.Type;
 
 import java.util.stream.Collectors;
 
-public class ExpandCustomerInfo extends Recipe {
+public class CustomerInfoExpandRecipe extends Recipe {
 
     @Override
     public String getDisplayName() {
@@ -20,7 +20,7 @@ public class ExpandCustomerInfo extends Recipe {
 
     @Override
     public String getDescription() {
-        return "Expand the `CustomerInfo` class with new fields.";
+        return "Expand the `Customer` class with new fields.";
     }
 
     // OpenRewrite provides a managed environment in which it discovers, instantiates, and wires configuration into Recipes.

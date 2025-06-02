@@ -24,7 +24,7 @@ public class MethodAddWithPramRecipe extends Recipe {
     String methodName;
 
     public MethodAddWithPramRecipe() {
-        fullyQualifiedClassName = "com.sample.FooBar";
+        fullyQualifiedClassName = "com.sample.User";
         methodName = "myMethod";
     }    
 

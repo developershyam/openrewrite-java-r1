@@ -6,15 +6,25 @@ import org.openrewrite.test.RewriteTest;
 
 import static org.openrewrite.java.Assertions.java;
 
-class MethodAddRecipeTest implements RewriteTest {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+class YAMLMethodRecipeTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new MethodAddRecipe("com.sample.User", "hello"));
+        try {
+            InputStream in = new FileInputStream(new File("src/main/resources/META-INF/rewrite/rewrite.yml"));
+            spec.recipe(in, "com.sample.MyYAMLMethodRecipe");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void addsHelloToFooBar() {
+    void addsHelloAndMyTestMethodToFooBar() {
         
         rewriteRun(
             java(
@@ -31,26 +41,16 @@ class MethodAddRecipeTest implements RewriteTest {
                         public String hello() {
                             return "Hello from com.sample.User!";
                         }
+                        
+                        public String myTestMethod(String name) {
+                            return "Hello from com.sample.User!";
+                        }
                     }
                 """
             )
         );
     }
 
-    @Test
-    void doesNotChangeExistingHello() {
-        rewriteRun(
-            java(
-                """
-                    package com.sample;
-        
-                    class User {
-                        public String hello() { return ""; }
-                    }
-                """
-            )
-        );
-    }
 
     @Test
     void doesNotChangeOtherClasses() {

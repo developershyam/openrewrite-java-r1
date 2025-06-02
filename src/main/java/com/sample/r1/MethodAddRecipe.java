@@ -27,8 +27,10 @@ public class MethodAddRecipe extends Recipe {
     @NonNull
     String methodName;
 
+    private static int loadCount = 0;
+
     public MethodAddRecipe() {
-        fullyQualifiedClassName = "com.sample.FooBar";
+        fullyQualifiedClassName = "com.sample.User";
         methodName = "hello";
     }    
 
@@ -38,6 +40,13 @@ public class MethodAddRecipe extends Recipe {
                                 @NonNull @JsonProperty("methodName") String methodName) {
         this.fullyQualifiedClassName = fullyQualifiedClassName;
         this.methodName = methodName;
+        if("true".equalsIgnoreCase(System.getenv("MOD_ENABLE_DEBUG")) && loadCount == 0) {
+            loadCount++;
+            String classFilePath = MethodAddRecipe.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            System.out.println("MethodAddRecipe source path: " + classFilePath);
+            System.out.println("MethodAddRecipe current dir execution path: " + new File("").getAbsolutePath());
+        }
+        
     }
 
     @Override
@@ -66,7 +75,7 @@ public class MethodAddRecipe extends Recipe {
         public J.CompilationUnit visitCompilationUnit(J.CompilationUnit compUnit, ExecutionContext executionContext) {
             // This next line could be omitted in favor of a breakpoint
             // if you'd prefer to use the debugger instead.
-            if(System.getenv("ENABLE_DEBUG").equals("true")){
+            if("true".equalsIgnoreCase(System.getenv("MOD_ENABLE_DEBUG"))){
                 System.out.println("************** visitCompilationUnit: "+ compUnit.getSourcePath().toFile().getAbsolutePath());
                 System.out.println(TreeVisitingPrinter.printTree(getCursor()));
             }
